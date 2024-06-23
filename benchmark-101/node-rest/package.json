@@ -1,0 +1,14 @@
+{
+  "name": "node-rest",
+  "version": "1.0.0",
+  "description": "rest api with node.js and express.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
