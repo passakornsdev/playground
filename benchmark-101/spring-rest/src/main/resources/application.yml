@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: spring-rest
+
+server:
+  port: 8080
+
+app:
+  weather-service:
+    base-url: ${WEATHER_BASE_URL}
