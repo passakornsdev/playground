@@ -4,8 +4,10 @@ WORKDIR /home/go-rest/
 
 COPY . .
 
-RUN go mod download
-RUN CGO_ENABLED=0 GOOS=linux go build -o go-server
+RUN apt-get update && \
+    apt-get install -y nmon && \
+    go mod download && \
+    CGO_ENABLED=0 GOOS=linux go build -o go-server
 
 EXPOSE 8080
 
