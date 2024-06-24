@@ -1,4 +1,7 @@
 spring:
+#  thread:
+#    virtual:
+#      enabled: true
   application:
     name: spring-rest
 

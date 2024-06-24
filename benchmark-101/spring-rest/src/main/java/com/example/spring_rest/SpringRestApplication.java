@@ -24,16 +24,4 @@ public class SpringRestApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringRestApplication.class, args);
 	}
-
-	@Bean(TaskExecutionAutoConfiguration.APPLICATION_TASK_EXECUTOR_BEAN_NAME)
-	public AsyncTaskExecutor asyncTaskExecutor() {
-		return new TaskExecutorAdapter(Executors.newVirtualThreadPerTaskExecutor());
-	}
-
-	@Bean
-	public TomcatProtocolHandlerCustomizer<?> protocolHandlerVirtualThreadExecutorCustomizer() {
-		return protocolHandler -> {
-			protocolHandler.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
-		};
-	}
 }
