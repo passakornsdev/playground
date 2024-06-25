@@ -18,14 +18,14 @@ func GetTemperature(cityName string) (int8, error) {
 
 	var responsebody WeatherResponse
 
-	fmt.Printf("sending request to %s \n", WEATHER_BASE_URL+"/v1/api/weather")
+	fmt.Printf("sending request to %s \n", WEATHER_BASE_URL+"/response.json")
 
 	response, err := client.R().
 		SetQueryParams(map[string]string{
 			"cityName": cityName,
 		}).
 		SetResult(&responsebody).
-		Get(WEATHER_BASE_URL + "/v1/api/weather")
+		Get(WEATHER_BASE_URL + "/response.json")
 
 	fmt.Printf("Receiving response with status %v\n", response.Status())
 	if err != nil {

@@ -26,7 +26,7 @@ public class WeatherServiceImpl implements WeatherService {
         log.info("Sending request to weather service");
         Map<String, String> params = new HashMap<>();
         params.put("cityName", city);
-        GetTemperatureResponse response = restClient.getForObject(this.basedUrl.concat("/v1/api/weather"), GetTemperatureResponse.class, params);
+        GetTemperatureResponse response = restClient.getForObject(this.basedUrl.concat("/response.json"), GetTemperatureResponse.class, params);
         log.info("Successfully Sent request to weather service");
         return response == null ? 0 : response.getTemp();
     }
