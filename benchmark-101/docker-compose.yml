@@ -1,47 +1,30 @@
 services:
-  node-rest:
-    container_name: node-rest
-    image: node-rest
-    build: ./node-rest
-    restart: always
+  minio:
+    container_name: minio
+    image: quay.io/minio/minio
     ports:
-      - "8090:8080"
+      - "9000:9000"
+      - "9001:9001"
+    command: server data --console-address ":9001"
   go-rest:
     container_name: go-rest
     image: go-rest
+    #build: ./go-rest/
     restart: always
     ports:
       - "8080:8080"
     environment:
-      - WEATHER_BASE_URL=http://node-rest:8080
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 2G
+      - WEATHER_BASE_URL=http://minio:9000/1132ee15-24fb-46ab-be31-8e698d76f017
+    mem_limit: 1G
+    cpus: "1"
   spring-rest-virtual:
     container_name: spring-rest-virtual
     image: spring-rest-virtual
+    #build: ./spring-rest/
     restart: always
     ports:
       - "8081:8080"
     environment:
-      - WEATHER_BASE_URL=http://node-rest:8080
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 2G
-  spring-rest-platform:
-    container_name: spring-rest-platform
-    image: spring-rest-platform
-    restart: always
-    ports:
-      - "8082:8080"
-    environment:
-      - WEATHER_BASE_URL=http://node-rest:8080
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 2G
+      - WEATHER_BASE_URL=http://minio:9000/1132ee15-24fb-46ab-be31-8e698d76f017
+    mem_limit: 1G
+    cpus: "1"
